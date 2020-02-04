@@ -1,0 +1,32 @@
+<!-- Client -->
+<!-- https://socket.io/ -->
+
+<!-- Inject the io object into the global scope -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+
+<script>
+    //let ws = new WebSocket('ws://localhost:8000');
+    const socket = io('http://localhost:8000');
+
+    console.log(socket);
+
+    // ws.onopen = (event) => {
+    socket.on('connect', (data) => {
+        // ws.send('FROM CLIENT: I am so excited I am connected!');
+        socket.on('welcome', (message) => {
+            console.log(message);
+        });
+        socket.emit('message', { data: 'I am so excited I am connected! It is like Christmas!' });
+    });
+
+    // Listen for a connect
+    // 
+
+    // // -Any time someones sends us a message
+    // //  we run the following functions;
+    // ws.onmessage = (event) => {
+    //         // -This is the pipe
+    //         // -Real-time across TCP
+    //         console.log(event);
+    //     };
+</script>
